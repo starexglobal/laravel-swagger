@@ -73,13 +73,17 @@ class Generator implements GeneratorContract
     protected function getBaseInfo()
     {
         $baseInfo = [
-            'swagger' => '2.0',
+            "openapi" => "3.0.1",
             'info' => [
                 'title' => $this->config['title'],
                 'description' => $this->config['description'],
                 'version' => $this->config['appVersion'],
             ],
-            'host' => parse_url($this->config['host'])['host'],
+            "servers" => [
+              [
+                  "url" => $this->config['host']
+              ]
+            ],
             'basePath' => $this->config['basePath'],
         ];
 
@@ -248,7 +252,7 @@ class Generator implements GeneratorContract
             $isDeprecated = $parsedComment->hasTag('deprecated');
 
             $summary = $parsedComment->getSummary();
-            $description = (string) $parsedComment->getDescription();
+            $description = (string)$parsedComment->getDescription();
 
             return [$isDeprecated, $summary, $description];
         } catch (\Exception $e) {
@@ -290,7 +294,7 @@ class Generator implements GeneratorContract
 
         $scopes = \Laravel\Passport\Passport::scopes()->toArray();
 
-        if(empty($scopes)) {
+        if (empty($scopes)) {
             return new \stdClass();
         }
 
@@ -309,7 +313,7 @@ class Generator implements GeneratorContract
         $resolver = $this->getMiddlewareResolver($middleware->name());
 
         return $resolver === 'Laravel\Passport\Http\Middleware\CheckScopes' ||
-               $resolver === 'Laravel\Passport\Http\Middleware\CheckForAnyScope';
+            $resolver === 'Laravel\Passport\Http\Middleware\CheckForAnyScope';
     }
 
     private function getMiddlewareResolver(string $middleware)
