@@ -162,7 +162,7 @@ class Generator implements GeneratorContract
         }
 
         if (!empty($parameters)) {
-            $this->docs['paths'][$this->route->uri()][$this->method]['parameters'] = $parameters;
+            $this->docs['paths'][$this->route->uri()][$this->method]['requestBody'] = $parameters;
         }
     }
 
