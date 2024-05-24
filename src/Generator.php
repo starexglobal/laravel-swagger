@@ -79,7 +79,7 @@ class Generator implements GeneratorContract
                 'description' => $this->config['description'],
                 'version' => $this->config['appVersion'],
             ],
-            'host' => $this->config['host'],
+            'host' => parse_url($this->config['host'])['host'],
             'basePath' => $this->config['basePath'],
         ];
 

@@ -12,6 +12,6 @@ class JsonFormatter extends Formatter
             throw new LaravelSwaggerException('JSON extension must be loaded to use the json output format');
         }
 
-        return json_encode($this->docs, JSON_PRETTY_PRINT);
+        return json_encode($this->docs, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 }
