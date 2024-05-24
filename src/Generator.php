@@ -290,6 +290,10 @@ class Generator implements GeneratorContract
 
         $scopes = \Laravel\Passport\Passport::scopes()->toArray();
 
+        if(empty($scopes)) {
+            return new \stdClass();
+        }
+
         return array_combine(array_column($scopes, 'id'), array_column($scopes, 'description'));
     }
 
