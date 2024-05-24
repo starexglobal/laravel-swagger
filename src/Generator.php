@@ -84,20 +84,7 @@ class Generator implements GeneratorContract
                   "url" => $this->config['host']
               ]
             ],
-            'basePath' => $this->config['basePath'],
         ];
-
-        if (!empty($this->config['schemes'])) {
-            $baseInfo['schemes'] = $this->config['schemes'];
-        }
-
-        if (!empty($this->config['consumes'])) {
-            $baseInfo['consumes'] = $this->config['consumes'];
-        }
-
-        if (!empty($this->config['produces'])) {
-            $baseInfo['produces'] = $this->config['produces'];
-        }
 
         $baseInfo['paths'] = [];
 
